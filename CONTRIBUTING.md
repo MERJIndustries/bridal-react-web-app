@@ -1,59 +1,41 @@
-# Contributing Guidelines
+Thanks so much for considering contributing to Open SaaS 🙏
 
-Thank you for your interest in contributing to our project. Whether it's a bug report, new feature, correction, or additional
-documentation, we greatly value feedback and contributions from our community.
+## Considerations before Contributing
+Check if there is a GitHub issue already for the thing you would like to work on. If there is no issue yet, create a new one.
 
-Please read through this document before submitting any issues or pull requests to ensure we have all the necessary
-information to effectively respond to your bug report or contribution.
+Let us know, in the issue, that you would like to work on it and how you plan to approach it.
+This helps, especially with the more complex issues, as it allows us to discuss the solution upfront and make sure it is well planned and fits with the rest of the project.
 
+## Repo organization
 
-## Reporting Bugs/Feature Requests
+Repo is divided into two main parts: [template](/template) dir and [opensaas-sh](/opensaas-sh) dir.
 
-We welcome you to use the GitHub issue tracker to report bugs or suggest features.
+`template` contains the actual open saas template that will be used by Wasp to create your new open-saas-based app when you run `wasp new -t saas`.
 
-When filing an issue, please check existing open, or recently closed, issues to make sure somebody else hasn't already
-reported the issue. Please try to include as much information as you can. Details like these are incredibly useful:
+`opensaas-sh` is the app deployed to https://opensaas.sh , and is actually made with open saas! It contains a demo app and open saas docs. We keep it updated as we work on the template.
 
-* A reproducible test case or series of steps
-* The version of our code being used
-* Any modifications you've made relevant to the bug
-* Anything unusual about your environment or deployment
+## How to Contribute
+1. Make sure you understand the basics of how open-saas works (check out [docs](https://docs.opensaas.sh)).
+2. Check out this repo (`main` branch) and make sure you are able to get the app in [template/app/](/template/app) running (to set it up, follow the same steps as for running a new open-saas app, as explained in the open-saas docs).
+3. Create a new git branch for your work (aka feature branch) and do your changes on it.
+4. Update e2e tests in [template/e2e-tests](/template/e2e-tests/) if needed and make sure they are passing.
+5. Update docs in [opensaas-sh/blog/src/content/docs](/opensaas-sh/blog/src/content/docs/) if needed. Check [opensaas-sh/README.md](/opensaas-sh/README.md) for more details.
+6. Update demo app in [opensaas-sh/app_diff](/opensaas-sh/app_diff) if needed. Check [opensaas-sh/README.md](/opensaas-sh/README.md) for more details.
+7. Create a pull request (towards `main` as a base branch).
+8. Make a "Da Boi" meme while you wait for us to review your PR(s).
+9. If you don't know who "Da Boi" is, head back to the [Wasp Discord](https://discord.gg/aCamt5wCpS) and find out :)
 
+## Additional Info
 
-## Contributing via Pull Requests
-Contributions via pull requests are much appreciated. Before sending us a pull request, please ensure that:
+### Template Versioning
 
-1. You are working against the latest source on the *main* branch.
-2. You check existing open, and recently merged, pull requests to make sure someone else hasn't addressed the problem already.
-3. You open an issue to discuss any significant work - we would hate for your time to be wasted.
+Whenever a user starts a new Wasp project with `wasp new -t <template_name>`, Wasp looks for a specific tag on the template repo, and pulls the project at the commit associated with that tag.
 
-To send us a pull request, please:
+In the case of Open SaaS, which is a Wasp template, the tag is `wasp-v{{version}}-template`, where `{{version}}` is the current version of Wasp, e.g. `wasp-v0.13-template`.
 
-1. Fork the repository.
-2. Modify the source; please focus on the specific change you are contributing. If you also reformat all the code, it will be hard for us to focus on your change.
-3. Ensure local tests pass.
-4. Commit to your fork using clear commit messages.
-5. Send us a pull request, answering any default questions in the pull request interface.
-6. Pay attention to any automated CI failures reported in the pull request, and stay involved in the conversation.
+We manually (re)assign the appropriate tag when we are ready to release a new version of Open Saas.
 
-GitHub provides additional document on [forking a repository](https://help.github.com/articles/fork-a-repo/) and
-[creating a pull request](https://help.github.com/articles/creating-a-pull-request/).
+### Releasing
 
-
-## Finding contributions to work on
-Looking at the existing issues is a great way to find something to contribute on. As our projects, by default, use the default GitHub issue labels (enhancement/bug/duplicate/help wanted/invalid/question/wontfix), looking at any 'help wanted' issues is a great place to start.
-
-
-## Code of Conduct
-This project has adopted the [Amazon Open Source Code of Conduct](https://aws.github.io/code-of-conduct).
-For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq) or contact
-opensource-codeofconduct@amazon.com with any additional questions or comments.
-
-
-## Security issue notifications
-If you discover a potential security issue in this project we ask that you notify AWS/Amazon Security via our [vulnerability reporting page](http://aws.amazon.com/security/vulnerability-reporting/). Please do **not** create a public github issue.
-
-
-## Licensing
-
-See the [LICENSE](LICENSE) file for our project's licensing. We will ask you to confirm the licensing of your contribution.
+1. Assign appropriate tag to the commit we want to release (usually current `main`) so `wasp new -t saas` can pick up code from the [/template](/template).
+2. Deploy the demo app + landing page and blog + docs: [/opensaas-sh/README.md#Deployment](/opensaas-sh/README.md#Deployment).
